@@ -1,0 +1,20 @@
+1.	Create a vpc with two subnets dmz and pvt in us-east-1a.
+2.	Create an nacl with inbound/outbound from all traffic with  with rule 100 and deny from rule * and attach to vpc
+3.	Create an elastic ip and attach it to vpc and dmz subnet
+4.	Create the dmz route table with routes to local and internet gateway and attach to dmz subnet.
+5.	Create a pvt route table with routes to local and nat gateway and attach to pvt subnet.
+6.	Create a security group with 
+a. inbound 
+    10.0.0.0/8 8080 tcp
+    Local ip  5151 tcp
+    Local ip  3000 tcp
+b.	Outbound 
+    10.0.0.0/8 8080 tcp
+    Local ip  5151 tcp
+    Local ip  3000 tcp
+7.	Create iam role
+8.	Create iam policy with the below and attach to above create 
+a.	Amazonec2roleforssm – for session manager access
+9.	Create ec2 instance in pvt subnet and attach created iam role and security group.
+10.	Once create install docker engine and docker compose
+11.	Checkout docker-compose.yml from github and run docker-compose run to run our application.
