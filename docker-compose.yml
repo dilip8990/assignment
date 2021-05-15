@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  proxy:
+    image: raminidilip/assignment:nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - '.:/app'
+ 
+  backend:
+    image: raminidilip/assignment:backendv3
+    ports:
+      - "5151:5151"
+    depends_on:
+      - proxy
+ 
+  frontend:
+    image: raminidilip/assignment:frontendv2
+    ports:
+      - "3000:3000"
+    depends_on:
+      - proxy
+      - backend
+    environment:
+      - REACT_APP_SERVER_URL=localhost
+      - REACT_APP_SERVER_PORT=5151
+
