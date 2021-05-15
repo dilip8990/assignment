@@ -5,13 +5,13 @@ services:
     image: raminidilip/assignment:nginx
     ports:
       - "8080:80"
-    volumes:
-      - '.:/app'
  
   backend:
     image: raminidilip/assignment:backendv3
     ports:
       - "5151:5151"
+    volumes:
+      - '.:/server'
     depends_on:
       - proxy
  
@@ -19,6 +19,8 @@ services:
     image: raminidilip/assignment:frontendv2
     ports:
       - "3000:3000"
+    volumes:
+      - '.:/app'
     depends_on:
       - proxy
       - backend
