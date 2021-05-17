@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: frontendv2pod
+ labels:
+   app: frontend
+spec:
+  containers:
+   - name : frontendv2
+     image: raminidilip/assignment:frontendv2 
+     ports:
+        - containerPort: 3000
+          protocol: TCP
